@@ -4,15 +4,16 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors')
 const logger = require('morgan');
-require('./bin/www');
-const connectDB = require('./config/db')
+const serverless = require('serverless-http');
+require('../bin/www');
+const connectDB = require('../config/db')
 
-const productRoutes = require('./routes/productRoutes')
-const userRoutes = require('./routes/userRoutes')
-const orderRoutes = require('./routes/orderRoutes')
-const setupRoutes = require('./routes/setupRoutes')
-const postRoutes = require('./routes/postRoutes')
-const bottlePostsRoute = require('./routes/bottlePostRoutes')
+const productRoutes = require('../routes/productRoutes')
+const userRoutes = require('../routes/userRoutes')
+const orderRoutes = require('../routes/orderRoutes')
+const setupRoutes = require('../routes/setupRoutes')
+const postRoutes = require('../routes/postRoutes')
+const bottlePostsRoute = require('../routes/bottlePostRoutes')
 
 const app = express();
 
@@ -33,10 +34,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)
-app.use('/api/setup', setupRoutes)
 // app.use('/api/upload', uploadRoutes)
 app.use('/api/dashboard', postRoutes);
 app.use('/api/bottle', bottlePostsRoute);
+app.use('/', setupRoutes)
 
 app.get('/order/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))
 
@@ -56,4 +57,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+module.exports.handler = serverless(app);

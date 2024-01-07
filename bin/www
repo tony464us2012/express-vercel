@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../index');
+var app = require('../functions/index');
 var debug = require('debug')('express-deployment:server');
 var http = require('http');
 
