@@ -1,0 +1,9 @@
+{
+    "MONGO_URI": "mongodb+srv://tony464us2012:Anthony464$@cluster0.yph25.mongodb.net/Shop_109?retryWrites=true&w=majority",
+    "TOKEN_SECRET": "KJGKJSAFG09HERJLWERNLFN",
+    "STRIPE_KEY_SECRET": "sk_test_51IQjuZL3CskvbasW28OowPqYz2pAIOXrkU5G1e2wadOfUFmQrSsVqBHAAne11vEgc63TnR0lVU2zlGLj4PcXEkqN00RPOuQj6c",
+    "ACCOUNT_SID" : "AC2c234867dbafbb941883e47b75ab1ca4",
+    "AUTH_TOKEN" : "c8801ff88b4483305a1d3211b6a6ae6b",
+    "EMAIL" : "109burgerbusiness@gmail.com",
+    "PASSWORD" : "123456"
+}
