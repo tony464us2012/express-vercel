@@ -1,13 +1,13 @@
 const mongoose = require('mongoose')
-const db = process.env.MONGO_URI
-const config = require('config')
+const db = (process.env.MONGO_URI)
 
-const dbURI = config.get('MONGO_URI')
+
 
 const connectDB = async () => {
 
     try {
-       await mongoose.connect(dbURI);
+        console.log(db)
+       await mongoose.connect(db);
         console.log('MongoDB Connected')
     } catch(err) {
         console.error(err.message);

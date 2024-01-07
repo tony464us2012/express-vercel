@@ -5,15 +5,16 @@ const cookieParser = require('cookie-parser');
 const cors = require('cors')
 const logger = require('morgan');
 const serverless = require('serverless-http');
-require('../bin/www');
-const connectDB = require('../config/db')
+require('./bin/www');
+require('dotenv').config()
+const connectDB = require('./config/db')
 
-const productRoutes = require('../routes/productRoutes')
-const userRoutes = require('../routes/userRoutes')
-const orderRoutes = require('../routes/orderRoutes')
-const setupRoutes = require('../routes/setupRoutes')
-const postRoutes = require('../routes/postRoutes')
-const bottlePostsRoute = require('../routes/bottlePostRoutes')
+const productRoutes = require('./routes/productRoutes')
+const userRoutes = require('./routes/userRoutes')
+const orderRoutes = require('./routes/orderRoutes')
+const setupRoutes = require('./routes/setupRoutes')
+const postRoutes = require('./routes/postRoutes')
+const bottlePostsRoute = require('./routes/bottlePostRoutes')
 
 const app = express();
 
