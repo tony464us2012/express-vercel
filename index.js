@@ -1,11 +1,10 @@
 const createError = require('http-errors');
+const http = require('http')
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors')
 const logger = require('morgan');
-const serverless = require('serverless-http');
-require('./bin/www');
 require('dotenv').config()
 const connectDB = require('./config/db')
 
@@ -17,13 +16,14 @@ const postRoutes = require('./routes/postRoutes')
 const bottlePostsRoute = require('./routes/bottlePostRoutes')
 
 const app = express();
+const server = http.createServer(app)
+const port = process.env.PORT || 3000;
 
 connectDB()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
@@ -39,6 +39,13 @@ app.use('/api/orders', orderRoutes)
 app.use('/api/dashboard', postRoutes);
 app.use('/api/bottle', bottlePostsRoute);
 app.use('/', setupRoutes)
+
+
+
+server.listen(port, () => {
+ console.log(`Server is running on port ${port}`);
+});
+
 
 app.get('/order/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))
 
@@ -58,4 +65,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports.handler = serverless(app);
+module.exports = app;
